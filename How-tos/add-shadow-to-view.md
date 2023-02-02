@@ -1,6 +1,6 @@
 # Shadows
 ## A Simple drop shadow
-Let start by adding a simple view to the Viewcontroller
+Let start by adding a simple view with background color blue to the Viewcontroller
 
 ```swift
 import UIKit
@@ -33,4 +33,4 @@ class ViewController: UIViewController {
 }
 ```
 
-<img src="Images/12.png" width="200" height="400">
+<img src="Images/blue-view.png" width="200" height="400">
