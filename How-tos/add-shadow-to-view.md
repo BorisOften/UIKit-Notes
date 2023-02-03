@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 
 <img src="Images/blue-view.png" width="300" height="550">
 
-In order to add shadow effect to the view, we need to access the views CALayer and use it shadow properties as shown below
+In order to add shadow effects to the view, we need to access the view's CALayer and use its shadow properties as shown below
 
 ```swift
 func setup() {
