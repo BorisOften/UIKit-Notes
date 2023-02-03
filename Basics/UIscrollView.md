@@ -1,7 +1,7 @@
 # ScrollView
 ** ( add gif)
 
-There are two types of scroll view, Fixed and Dynamically 
+There are two types of scroll view, fixed and dynamic. 
 For the fixed scrollview, we can embed a view in the scrollview,
 while we can use a stackview to make the scrollview dynamic
 
