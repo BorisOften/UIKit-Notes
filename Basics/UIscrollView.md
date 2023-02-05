@@ -140,6 +140,6 @@ class ViewController: UIViewController {
 we can adapt the scrollview for our own needs: add TextFields, UIImageView, Segmented Controls or whatever we need to build our user interface.
 
 ## Links
-https://www.youtube.com/watch?v=JEtMmiRX_c8
-https://medium.com/swift-productions/create-a-uiscrollview-programmatically-xcode-12-swift-5-3-f799b8280e30
-https://www.youtube.com/watch?v=-yjknIzf5KE
+- https://www.youtube.com/watch?v=JEtMmiRX_c8
+- https://medium.com/swift-productions/create-a-uiscrollview-programmatically-xcode-12-swift-5-3-f799b8280e30
+- https://www.youtube.com/watch?v=-yjknIzf5KE
