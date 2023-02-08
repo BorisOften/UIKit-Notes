@@ -86,10 +86,12 @@ First we created a scrollView and set the scrollView to fill the viewcontrollers
 This view fills out the scrollview
 thats it, we can then design and add other views to the content view 
 
-## ScrollView with dynamic height with Example
+## ScrollView with dynamic height
 
-Rather than using a view with a fixed height, we could use a stack view inside the scroll view. 
-This will make the srcollview dynamic and then we can just add other views in the stack view
+Rather than using a view with a fixed height, we could use a stack view or a view without a fixed height. For the stackview, we just add a stackView inside the scroll view. For a normal view, we just have to make sure every constraint is connecting from contentView.TopAnchor to contentView.BottomAnchor. So, there should be a view that has it's topanchor 
+This will make the scrollview dynamic and then we can just add other views in the stack view
+
+# Example - StackView
 
 ```swift
 import UIKit
@@ -137,9 +139,73 @@ class ViewController: UIViewController {
 
 ```
 
+# Example - UIView
+
+``` swift
+import UIKit
+
+class ViewController: UIViewController {
+
+    let scroll = UIScrollView()
+    let contentView = UIView()
+    let firstLabel = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+
+    func setup() {
+        view.addSubview(scroll)
+        
+        scroll.addSubview(contentView)
+        contentView.addSubview(firstLabel)
+        
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.backgroundColor = .blue
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .red
+        
+        firstLabel.translatesAutoresizingMaskIntoConstraints = false
+        firstLabel.text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui."
+        firstLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        firstLabel.numberOfLines = 0
+        
+        NSLayoutConstraint.activate([
+            scroll.topAnchor.constraint(equalTo: view.topAnchor),
+            scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scroll.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scroll.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scroll.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scroll.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scroll.widthAnchor)
+         ])
+        
+        NSLayoutConstraint.activate([
+            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            firstLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+        ])
+    }
+}
+```
+Here, we have a label in the contentView of the scrollview but because we never use the contentView's bottom anchor, the contentView does not know what height it should be and therefore it is not scrollable.
+If we add the code in the NSLayoutConstraint.activate of the firstlabel as shown below, it show make contentView scrollable
+
+```swift
+firstLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+```
+
 we can adapt the scrollview for our own needs: add TextFields, UIImageView, Segmented Controls or whatever we need to build our user interface.
 
 ## Links
 - https://www.youtube.com/watch?v=JEtMmiRX_c8
 - https://medium.com/swift-productions/create-a-uiscrollview-programmatically-xcode-12-swift-5-3-f799b8280e30
 - https://www.youtube.com/watch?v=-yjknIzf5KE
+- https://stackoverflow.com/questions/37223709/using-scroll-view-with-autolayout-swift
